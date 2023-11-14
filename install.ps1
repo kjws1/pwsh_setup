@@ -8,7 +8,7 @@ function Install-Program-Choco {
     )
     choco install -y $Name
 }
-Set-Alias -Name "ipc" -Value "Install-Program-Choco"
+Set-Alias -Name "choco install -y" -Value "Install-Program-Choco"
 
 function Install-Program-Winget {
     param (
@@ -16,7 +16,7 @@ function Install-Program-Winget {
     )
     winget install -y $Id
 }
-Set-Alias -Name "ipw" -Value "Install-Program-Winget"
+Set-Alias -Name "winget install" -Value "Install-Program-Winget"
 
 $Repo = "https://github.com/larpios/pwsh_setup"
 $Profile_path = "$Repo/raw/main/Microsoft.PowerShell_profile.ps1"
@@ -29,14 +29,14 @@ git config --global user.email "larpios@protonmail.com"
 
 Invoke-WebRequest $profile_path -OutFile $PROFILE
 Install-Chocolatey
-Start-Job -ScriptBlock { ipc "bitwarden" } 
-Start-job -ScriptBlock { ipc "brave" }
-Start-job -ScriptBlock { ipc "obsidian" }
-Start-job -ScriptBlock { ipc "oh-my-posh" }
-ipc "winget"
+Start-Job -ScriptBlock { choco install -y "bitwarden" } 
+Start-job -ScriptBlock { choco install -y "brave" }
+Start-job -ScriptBlock { choco install -y "obsidian" }
+Start-job -ScriptBlock { choco install -y "oh-my-posh" }
+choco install -y "winget"
 
-Start-job -ScriptBlock { ipw "Microsoft.WindowsTerminal.Preview" }
-Start-job -ScriptBlock { ipw "Microsoft.PowerShell" }
+Start-job -ScriptBlock { winget install "Microsoft.WindowsTerminal.Preview" }
+Start-job -ScriptBlock { winget install "Microsoft.PowerShell" }
 
 $TempFile = "$env:TEMP\settings.json"
 Invoke-WebRequest -Uri $Settings_path -OutFile $TempFile
