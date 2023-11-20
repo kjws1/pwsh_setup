@@ -1,6 +1,6 @@
 $VSCodeSettingsPath = "$env:APPDATA\Code\User\settings.json"
 $GitHubProfile = "https://github.com/larpios"
-$GitHubDestination = "~/GitHub"
+$GitHubDestination = "$Documents/GitHub"
 if (-not (Test-Path -Path $GitHubDestination))
 {
   New-Item -ItemType Directory -Path $GitHubDestination | Out-Null
@@ -18,6 +18,9 @@ foreach ($elem in $FilesToGet)
 {
   Copy-Item -Path $elem -Destination $FilesPath
 }
+
+
+
 
 
 
