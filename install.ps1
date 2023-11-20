@@ -41,61 +41,27 @@ foreach ($elem in $RepoToGet)
 }
 
 
-$ProgramgsToGet = "bitwarden", "brave", "obsidian", "wezterm", "powershell-core", "oh-my-posh", "mingw", "obs-studio", "nerd-fonts-agave", "winget" 
+$ProgramgsToGet = "bitwarden", "brave", "obsidian", "wezterm", "powershell-core", "neovim", "oh-my-posh", "mingw", "obs-studio", "nerd-fonts-agave", "winget" 
 
 # Make PowerShell Profile
-$TempFile = "$env:TEMP\Microsoft.PowerShellprofile.ps1"
-Invoke-WebRequest $ProfilePath -OutFile $TempFile
-Copy-Item -Path $TempFile -Destination $PROFILE -Force
-
-# Create the destination folder if it doesn't exist
-if (-not (Test-Path -Path $ProfileDestination))
+if ($Host.Name -eq "ServerRemoteHost")
 {
-  New-Item -ItemType Directory -Path $ProfileDestination | Out-Null
+  $TempFile = "$env:TEMP\Microsoft.PowerShellprofile.ps1"
+  Invoke-WebRequest $ProfilePath -OutFile $TempFile
+  Copy-Item -Path $TempFile -Destination $PROFILE -Force
+} else
+{
+  Copy-Item -Path $ProfilePath -Destination $PROFILE -Force
+
 }
 
-# Copy the downloaded settings file to the PowerShell profile location
-Copy-Item -Path $TempFile -Destination $ProfileDestination -Force
 
-Remove-Item $TempFile
 
 # Install Programs using Chocolatey
 Install-Chocolatey
-choco install -y @ProgramgsToGet.
-
-$TempFile = "$env:TEMP\settings.json"
-Invoke-WebRequest -Uri $Settingspath -OutFile $TempFile
-Copy-Item -Path $TempFile -Destination $SettingsDestination -Force
-Remove-Item -Path $TempFile
+choco install -y @ProgramgsToGet
 
 Write-Output "Done!"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
