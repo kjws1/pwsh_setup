@@ -5,7 +5,7 @@ if (-not (Test-Path -Path $GitHubDestination))
 {
   New-Item -ItemType Directory -Path $GitHubDestination | Out-Null
 }
-$Repo = "$GitHubProfile/pwshsetup"
+$Repo = "$GitHubProfile/pwsh_setup"
 $ProfilePath = "$Repo/raw/main/Microsoft.PowerShellprofile.ps1"
 $SettingsPath = "$Repo/raw/main/settings.json"
 $SettingsDestination = (Get-ChildItem -Path $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminalPreview*\LocalState).FullName + "\settings.json"
@@ -62,3 +62,4 @@ Copy-Item -Path $TempFile -Destination $SettingsDestination -Force
 Remove-Item -Path $TempFile
 
 Write-Output "Done!"
+
