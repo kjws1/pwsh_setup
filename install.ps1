@@ -1,20 +1,26 @@
-$VSCodeSettingsPath = "$env:APPDATA\Code\User\settings.json"
+# Assign variables
 $GitHubProfile = "https://github.com/larpios"
+$VSCodeSettingsDestination = "$env:APPDATA\Code\User\settings.json"
 $GitHubDestination = "$Documents/GitHub"
+$ProfileDestination = "$env:USERPROFILE/Documents/PowerShell"
+$Repo = "$GitHubProfile/pwsh_setup"
 if (-not (Test-Path -Path $GitHubDestination))
 {
   New-Item -ItemType Directory -Path $GitHubDestination | Out-Null
 }
-$Repo = "$GitHubProfile/pwsh_setup"
-$ProfilePath = "$Repo/raw/main/Files/Microsoft.PowerShell_profile.ps1"
-$SettingsPath = "$Repo/raw/main/Files/settings.json"
-$SettingsDestination = (Get-ChildItem -Path $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminalPreview*\LocalState).FullName + "\settings.json"
-# Specify the destination folder for the PowerShell profile
-$ProfileDestination = "$env:USERPROFILE/Documents/PowerShell"
+if ($Host.Name -eq "ServerRemoteHost")
+{
+  $ProfilePath = "$Repo/raw/main/Files/Microsoft.PowerShell_profile.ps1"
+} else
+{
+  $ProfilePath = "./Files/Microsoft.PowerShell_profile.ps1"
+}
 
 function Install-Chocolatey
 {
-  Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+  Set-ExecutionPolicy Bypass -Scope Process -Force;
+  [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
+  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 }
 
 
@@ -61,6 +67,22 @@ Copy-Item -Path $TempFile -Destination $SettingsDestination -Force
 Remove-Item -Path $TempFile
 
 Write-Output "Done!"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
