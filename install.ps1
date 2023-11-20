@@ -31,7 +31,7 @@ git config --global user.name "larpios"
 git config --global user.email "larpios@protonmail.com"
 foreach ($elem in $RepoToGet)
 {
-  if ($elem.GetType() -eq "Hashtable")
+  if ($elem.GetType().Name -eq "Hashtable")
   {
     git clone "$GitHubProfile/$( $elem.Name )" $elem.Path
   } else
@@ -69,6 +69,8 @@ Copy-Item -Path $TempFile -Destination $SettingsDestination -Force
 Remove-Item -Path $TempFile
 
 Write-Output "Done!"
+
+
 
 
 
