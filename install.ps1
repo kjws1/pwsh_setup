@@ -27,6 +27,7 @@ function Install-Chocolatey
 $RepoToGet = "obsidian-vault", @{Name = "nvim-config"; Path = "$env:LOCALAPPDATA/nvim"}
 
 # Git Config
+Write-Output "Setting up Git..."
 git config --global user.name "larpios"
 git config --global user.email "larpios@protonmail.com"
 foreach ($elem in $RepoToGet)
@@ -39,6 +40,7 @@ foreach ($elem in $RepoToGet)
     git clone "$GitHubProfile/$elem" "$GitHubDestination/$elem"
   }
 }
+Write-Output "Successfully set up Git!"
 
 
 $ProgramgsToGet = "bitwarden", "brave", "obsidian", "wezterm", "powershell-core", "neovim", "oh-my-posh", "mingw", "obs-studio", "nerd-fonts-agave", "winget" 
@@ -52,16 +54,25 @@ if ($Host.Name -eq "ServerRemoteHost")
 } else
 {
   Copy-Item -Path $ProfilePath -Destination $PROFILE -Force
-
 }
 
 
-
 # Install Programs using Chocolatey
+Write-Output "Installing Chocolatey..."
 Install-Chocolatey
+Write-Output "Successfully Installed Chocolatey!"
+Write-Output "Installing programs using Chocolatey..."
 choco install -y @ProgramgsToGet
+Write-Output "Successfully Installed programs using Chocolatey..."
 
 Write-Output "Done!"
+
+
+
+
+
+
+
 
 
 
