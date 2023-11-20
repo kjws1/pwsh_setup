@@ -63,9 +63,10 @@ Install-Chocolatey
 Write-Output "Successfully Installed Chocolatey!"
 Write-Output "Installing programs using Chocolatey..."
 choco install -y @ProgramgsToGet
-Write-Output "Successfully Installed programs using Chocolatey..."
+Write-Output "Successfully Installed programs using Chocolatey!"
 
 Write-Output "Done!"
+
 
 
 
