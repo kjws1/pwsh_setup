@@ -34,8 +34,10 @@ foreach ($elem in $RepoToGet)
   if ($elem.GetType() -eq "Hashtable")
   {
     git clone "$GitHubProfile/$( $elem.Name )" $elem.Path
+  } else
+  {
+    git clone "$GitHubProfile/$elem" "$GitHubDestination/$elem"
   }
-  git clone "$GitHubProfile/$elem" "$GitHubDestination/$elem"
 }
 
 
@@ -67,6 +69,8 @@ Copy-Item -Path $TempFile -Destination $SettingsDestination -Force
 Remove-Item -Path $TempFile
 
 Write-Output "Done!"
+
+
 
 
 
