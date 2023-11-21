@@ -12,10 +12,8 @@ if (-not (Test-Path -Path $GitHubDestination))
   New-Item -ItemType Directory -Path $GitHubDestination | Out-Null
 }
 
-$ProfileName = "Microsoft.PowerShell_profile.ps1"
-$WeztermName = ".wezterm.lua"
-$ProfilePath = "$FilesPath/$ProfileName"
-$WeztermPath = "$FilesPath/$WeztermName"
+$ProfilePath = "$FilesPath/Microsoft.PowerShell_profile.ps1"
+$WeztermPath = "$FilesPath/.wezterm.lua"
 
 function Install-Chocolatey
 {
@@ -31,7 +29,7 @@ $ProgramgsToGet = "brave", "bitwarden", "obsidian", "wezterm", "powershell-core"
 
 # Make PowerShell Profile
 New-Item $PROFILE -Force
-Invoke-WebRequest $ProfilePath -OutFile $ProfileName | Copy-Item -Destination $PROFILE -Force
+Invoke-WebRequest $ProfilePath | Copy-Item -Path $_ -Destination $PROFILE -Force
 
 # Put brave sync code
 $BraveSyncCode > $Home/Desktop/brave.txt
@@ -47,7 +45,7 @@ Write-Output "Successfully Installed programs using Chocolatey!"
 
 # Wezterm Config
 
-Invoke-WebRequest $WeztermPath -OutFile $WeztermName | Copy-Item -Destination $Home -Force
+Invoke-WebRequest $WeztermPath | Copy-Item -Path $_ -Destination $Home -Force
 Write-Output "Wezterm Config file is made"
 
 # Git Config
