@@ -31,7 +31,7 @@ function Install-Chocolatey
 
 $RepoToGet = "obsidian-vault", @{Name = "nvim-config"; Path = "$env:LOCALAPPDATA/nvim"}
 
-$ProgramgsToGet = "brave", "bitwarden", "obsidian", "wezterm", "powershell-core", "neovim", "oh-my-posh", "mingw", "obs-studio", "nerd-fonts-agave", "winget", "ueli", "lazygit"
+$ProgramgsToGet = "brave", "bitwarden", "obsidian", "wezterm", "powershell-core", "neovim", "oh-my-posh", "mingw", "obs-studio", "nerd-fonts-agave", "winget", "ueli", "ripgrep", "lazygit"
 
 # Make PowerShell Profile
 New-Item $PROFILE -Force
