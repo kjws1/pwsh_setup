@@ -5,19 +5,13 @@ $VSCodeSettingsDestination = "$env:APPDATA\Code\User\settings.json"
 $GitHubDestination = "$Home/Desktop/GitHub"
 $ProfileDestination = "$env:USERPROFILE/Documents/PowerShell"
 $Repo = "$GitHubProfile/pwsh_setup"
+$FilesPath = "$Repo/raw/main/Files"
 
 if (-not (Test-Path -Path $GitHubDestination))
 {
   New-Item -ItemType Directory -Path $GitHubDestination | Out-Null
 }
 
-if ($Host.Name -eq "ServerRemoteHost")
-{
-  $FilesPath = "$Repo/raw/main/Files"
-} else
-{
-  $FilesPath = "./Files"
-}
 $ProfilePath = "$FilesPath/Microsoft.PowerShell_profile.ps1"
 $WeztermPath = "$FilesPath/.wezterm.lua"
 
