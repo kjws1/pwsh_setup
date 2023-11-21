@@ -1,20 +1,25 @@
 # Assign variables
+$BraveSyncCode = "flower fabric copper fence solution obvious zebra proof van salute chronic senior crazy note regret door mean soldier such rather you harvest dress head "
 $GitHubProfile = "https://github.com/larpios"
 $VSCodeSettingsDestination = "$env:APPDATA\Code\User\settings.json"
-$GitHubDestination = "$Documents/GitHub"
+$GitHubDestination = "$Home/Desktop/GitHub"
 $ProfileDestination = "$env:USERPROFILE/Documents/PowerShell"
 $Repo = "$GitHubProfile/pwsh_setup"
+
 if (-not (Test-Path -Path $GitHubDestination))
 {
   New-Item -ItemType Directory -Path $GitHubDestination | Out-Null
 }
+
 if ($Host.Name -eq "ServerRemoteHost")
 {
-  $ProfilePath = "$Repo/raw/main/Files/Microsoft.PowerShell_profile.ps1"
+  $FilesPath = "$Repo/raw/main/Files"
 } else
 {
-  $ProfilePath = "./Files/Microsoft.PowerShell_profile.ps1"
+  $FilesPath = "."
 }
+$ProfilePath = "$FilesPath/Microsoft.PowerShell_profile.ps1"
+$WeztermPath = "$FilesPath/.wezterm.lua"
 
 function Install-Chocolatey
 {
@@ -25,6 +30,37 @@ function Install-Chocolatey
 
 
 $RepoToGet = "obsidian-vault", @{Name = "nvim-config"; Path = "$env:LOCALAPPDATA/nvim"}
+
+$ProgramgsToGet = "brave", "bitwarden", "obsidian", "wezterm", "powershell-core", "neovim", "oh-my-posh", "mingw", "obs-studio", "nerd-fonts-agave", "winget", "ueli", "lazygit"
+
+# Make PowerShell Profile
+New-Item $PROFILE -Force
+if ($Host.Name -eq "ServerRemoteHost")
+{
+  $TempFile = "$env:TEMP\Microsoft.PowerShellprofile.ps1"
+  Invoke-WebRequest $ProfilePath -OutFile $TempFile
+  Copy-Item -Path $TempFile -Destination $PROFILE -Force
+} else
+{
+  Copy-Item -Path $ProfilePath -Destination $PROFILE -Force
+}
+
+# Put brave sync code
+$BraveSyncCode > $Home/Desktop/brave.txt
+Write-Output "Brave Sync Code is made on Desktop"
+
+# Install Programs using Chocolatey
+Write-Output "Installing Chocolatey..."
+Install-Chocolatey
+Write-Output "Successfully Installed Chocolatey!"
+Write-Output "Installing programs using Chocolatey..."
+choco install -y @ProgramgsToGet
+Write-Output "Successfully Installed programs using Chocolatey!"
+
+# Wezterm Config
+
+Copy-Item $WeztermPath $Home/
+Write-Output "Wezterm Config file is made"
 
 # Git Config
 Write-Output "Setting up Git..."
@@ -42,40 +78,4 @@ foreach ($elem in $RepoToGet)
 }
 Write-Output "Successfully set up Git!"
 
-
-$ProgramgsToGet = "bitwarden", "brave", "obsidian", "wezterm", "powershell-core", "neovim", "oh-my-posh", "mingw", "obs-studio", "nerd-fonts-agave", "winget" 
-
-# Make PowerShell Profile
-if ($Host.Name -eq "ServerRemoteHost")
-{
-  $TempFile = "$env:TEMP\Microsoft.PowerShellprofile.ps1"
-  Invoke-WebRequest $ProfilePath -OutFile $TempFile
-  Copy-Item -Path $TempFile -Destination $PROFILE -Force
-} else
-{
-  Copy-Item -Path $ProfilePath -Destination $PROFILE -Force
-}
-
-
-# Install Programs using Chocolatey
-Write-Output "Installing Chocolatey..."
-Install-Chocolatey
-Write-Output "Successfully Installed Chocolatey!"
-Write-Output "Installing programs using Chocolatey..."
-choco install -y @ProgramgsToGet
-Write-Output "Successfully Installed programs using Chocolatey!"
-
 Write-Output "Done!"
-
-
-
-
-
-
-
-
-
-
-
-
-
