@@ -29,7 +29,7 @@ $ProgramgsToGet = "brave", "bitwarden", "obsidian", "wezterm", "powershell-core"
 
 # Make PowerShell Profile
 New-Item $PROFILE -Force
-Invoke-WebRequest $ProfilePath -UseBasicParsing | Copy-Item -Destination $PROFILE -Force
+Invoke-WebRequest $ProfilePath | Copy-Item -Path $_ -Destination $PROFILE -Force
 
 # Put brave sync code
 $BraveSyncCode > $Home/Desktop/brave.txt
@@ -45,7 +45,7 @@ Write-Output "Successfully Installed programs using Chocolatey!"
 
 # Wezterm Config
 
-Invoke-WebRequest $WeztermPath -UseBasicParsing | Copy-Item -Destination $Home -Force
+Invoke-WebRequest $WeztermPath | Copy-Item -Path $_ -Destination $Home -Force
 Write-Output "Wezterm Config file is made"
 
 # Git Config
