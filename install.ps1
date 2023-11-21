@@ -16,7 +16,7 @@ if ($Host.Name -eq "ServerRemoteHost")
   $FilesPath = "$Repo/raw/main/Files"
 } else
 {
-  $FilesPath = "."
+  $FilesPath = "./Files"
 }
 $ProfilePath = "$FilesPath/Microsoft.PowerShell_profile.ps1"
 $WeztermPath = "$FilesPath/.wezterm.lua"
@@ -35,15 +35,7 @@ $ProgramgsToGet = "brave", "bitwarden", "obsidian", "wezterm", "powershell-core"
 
 # Make PowerShell Profile
 New-Item $PROFILE -Force
-if ($Host.Name -eq "ServerRemoteHost")
-{
-  $TempFile = "$env:TEMP\Microsoft.PowerShellprofile.ps1"
-  Invoke-WebRequest $ProfilePath -OutFile $TempFile
-  Copy-Item -Path $TempFile -Destination $PROFILE -Force
-} else
-{
-  Copy-Item -Path $ProfilePath -Destination $PROFILE -Force
-}
+Copy-Item -Path $ProfilePath -Destination $PROFILE -Force
 
 # Put brave sync code
 $BraveSyncCode > $Home/Desktop/brave.txt
