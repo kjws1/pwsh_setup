@@ -8,13 +8,13 @@ $FilesPath = "$Repo/raw/main/Files"
 
 $ProfileItem = @{
     Name = "Microsoft.PowerShell_profile.ps1"
-    Path = "$FilesPath/$ProfileName"
-    Dest = "$HOME/Documents/PowerShell/"
+    Path = "$FilesPath/$ProfileItem.Name"
+    Dest = "$PPROFILE.CurrentUserCurrentHost"
 }
 
 $WeztermItem = @{
     Name = ".wezterm.lua"
-    Path = "$FilesPath/$WeztermName"
+    Path = "$FilesPath/$WeztermItem.Name"
     Dest = "$HOME"
 }
 
@@ -99,6 +99,8 @@ Write-Output "Wezterm Config file is made"
 
 
 Write-Output "Done!"
+
+
 
 
 
