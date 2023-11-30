@@ -20,7 +20,7 @@ $WeztermItem = @{
 
 $RepoToGet = "obsidian-vault", @{Name = "nvim-config"; Path = "$env:LOCALAPPDATA/nvim"}
 
-$ProgramgsToGet = "brave", "bitwarden", "obsidian", "wezterm", "powershell-core", "neovim", "oh-my-posh", "mingw", "obs-studio", "nerd-fonts-agave", "ueli", "ripgrep", "lazygit", "winget"
+$ProgramgsToGet = "brave", "obsidian", "powershell-core", "neovim", "oh-my-posh", "mingw", "nerd-fonts-agave", "flow-launcher", "ripgrep", "lazygit", "winget", "obs-studio", "wezterm"
 
 function Install-Chocolatey
 {
@@ -99,6 +99,9 @@ Write-Output "Wezterm Config file is made"
 
 
 Write-Output "Done!"
+
+
+
 
 
 
