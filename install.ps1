@@ -20,8 +20,7 @@ $WeztermItem = @{
 
 $RepoToGet = "obsidian-vault", @{Name = "nvim-config"; Path = "$env:LOCALAPPDATA/nvim"}
 
-$ProgramgsToGet = "brave", "obsidian", "powershell-core", "neovim", "oh-my-posh", "mingw", "nerd-fonts-agave", "flow-launcher", "ripgrep", "lazygit", "winget", "obs-studio", "wezterm"
-
+$ProgramgsToGet = "brave", "obsidian", "powershell-core", "neovim", "flow-launcher", "files", "obs-studio", "wezterm", "oh-my-posh", "mingw", "nerd-fonts-agave", "ripgrep", "lazygit"
 function Install-Chocolatey
 {
     Set-ExecutionPolicy Bypass -Scope Process -Force;
@@ -99,6 +98,11 @@ Write-Output "Wezterm Config file is made"
 
 
 Write-Output "Done!"
+
+
+
+
+
 
 
 
