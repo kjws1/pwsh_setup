@@ -11,14 +11,15 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
-
-config.default_prog = { "pwsh" }
-
-config.font = wezterm.font("Agave Nerd Font Mono")
-config.font_size = 14.0
-
 -- For example, changing the color scheme:
 config.color_scheme = "Catppuccin Mocha"
+config.font = wezterm.font("Agave Nerd Font Mono")
+config.font_size = 14.0
+config.window_background_opacity = 0.9
+-- config.win32_system_backdrop = "Tabbed"
+
+-- default shell
+config.default_prog = { "pwsh.exe" }
 
 -- and finally, return the configuration to wezterm
 return config
