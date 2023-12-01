@@ -6,15 +6,17 @@ $Repo = "$GitHubProfile/pwsh_setup"
 $FilesPath = "$Repo/raw/main/Files"
 
 
+$Name = "Microsoft.PowerShell_profile.ps1"
 $ProfileItem = @{
-  Name = "Microsoft.PowerShell_profile.ps1"
-  Path = "$FilesPath/$(ProfileItem.Name)"
-  Dest = "$HOME/PowerShell/$(ProfileItem.Name)"
+  Name = $Name
+  Path = "$FilesPath/$Name"
+  Dest = "$HOME/PowerShell/$Name"
 }
 
+$Name = ".wezterm.lua"
 $WeztermItem = @{
-  Name = ".wezterm.lua"
-  Path = "$FilesPath/$(WeztermItem.Name)"
+  Name = $Name
+  Path = "$FilesPath/$Name"
   Dest = "$HOME"
 }
 
@@ -98,6 +100,9 @@ Write-Output "Wezterm Config file is made"
 
 
 Write-Output "Done!"
+
+
+
 
 
 
