@@ -7,14 +7,14 @@ $FilesPath = "$Repo/raw/main/Files"
 
 
 $ProfileItem = @{
-    Name = "Microsoft.PowerShell_profile.ps1"
-    Path = "$FilesPath/$ProfileItem.Name"
+  Name = "Microsoft.PowerShell_profile.ps1"
+    Path = "$FilesPath/Microsoft.PowerShell_profile.ps1"
     Dest = "$PPROFILE.CurrentUserCurrentHost"
 }
 
 $WeztermItem = @{
-    Name = ".wezterm.lua"
-    Path = "$FilesPath/$WeztermItem.Name"
+  Name = ".wezterm.lua"
+    Path = "$FilesPath/.wezterm.lua"
     Dest = "$HOME"
 }
 
