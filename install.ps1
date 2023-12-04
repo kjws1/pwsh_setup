@@ -10,7 +10,7 @@ $Name = "Microsoft.PowerShell_profile.ps1"
 $ProfileItem = @{
   Name = $Name
   Path = "$FilesPath/$Name"
-  Dest = "$HOME/PowerShell/$Name"
+  Dest = "$HOME/Documents/PowerShell/$Name"
 }
 
 $Name = ".wezterm.lua"
@@ -82,7 +82,7 @@ function Setup-Git
 
 
 # Make PowerShell Profile
-New-Item $PROFILE -Force
+New-Item $ProfileItem.Dest -Force
 Invoke-WebRequest $ProfileItem.Path -OutFile $env:TEMP/$ProfileItem.Name | Copy-Item -Destination $ProfileItem.Dest -Force
 
 # Put brave sync code
@@ -95,7 +95,7 @@ Setup-Git
 
 
 # Wezterm Config
-Invoke-WebRequest $WeztermItem.Path -OutFile $WeztermItem.Name | Copy-Item -Destination $WeztermItem.Dest -Force
+Invoke-WebRequest $WeztermItem.Path -OutFile $env:TEMP/$WeztermItem.Name | Copy-Item -Destination $WeztermItem.Dest -Force
 Write-Output "Wezterm Config file is made"
 
 
