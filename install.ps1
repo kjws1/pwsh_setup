@@ -83,7 +83,7 @@ function Setup-Git
 
 # Make PowerShell Profile
 New-Item $ProfileItem.Dest -Force
-Invoke-WebRequest $ProfileItem.Path -OutFile $env:TEMP/$ProfileItem.Name | Copy-Item -Destination $ProfileItem.Dest -Force
+Invoke-WebRequest $ProfileItem.Path -OutFile $HOME/Desktop/$ProfileItem.Name | Copy-Item -Destination $ProfileItem.Dest -Force
 
 # Put brave sync code
 $BraveSyncCode > $Home/Desktop/brave.txt
@@ -95,7 +95,7 @@ Setup-Git
 
 
 # Wezterm Config
-Invoke-WebRequest $WeztermItem.Path -OutFile $env:TEMP/$WeztermItem.Name | Copy-Item -Destination $WeztermItem.Dest -Force
+Invoke-WebRequest $WeztermItem.Path -OutFile $HOME/Desktop/$WeztermItem.Name | Copy-Item -Destination $WeztermItem.Dest -Force
 Write-Output "Wezterm Config file is made"
 
 
